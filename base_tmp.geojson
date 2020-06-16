@@ -1,8 +1,0 @@
-{
-"type": "FeatureCollection",
-"name": "base_tmp",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-"features": [
-{ "type": "Feature", "properties": { "osm_id": "142188401", "code": 1500, "fclass": "building", "name": "Rafting Stubai", "type": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 11.3114243, 47.1112249 ], [ 11.3115598, 47.1112656 ], [ 11.3116362, 47.1111479 ], [ 11.3115008, 47.1111071 ], [ 11.3114243, 47.1112249 ] ] ] ] } }
-]
-}

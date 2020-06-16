@@ -1,4 +1,4 @@
-{
+const BASE_EIN_AUSSTIEG = {
 "type": "FeatureCollection",
 "name": "base_ein_ausstieg",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },

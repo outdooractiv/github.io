@@ -31,9 +31,6 @@ console.log(geojsonFeature.features.length);
 
 for (let i = 0; i < geojsonFeature.features.length; i++) {
     const element = geojsonFeature.features[i];
-    const fclass = element.properties.fclass;
-    const name = element.properties.name;
-    const popUP = [fclass, "name"]
     
     if (element.properties.fclass === "drinking_water") {
         L.geoJSON(element, {
