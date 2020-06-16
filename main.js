@@ -24,14 +24,22 @@ L.control.layers({
 
 
 L.geoJSON(TOUREN, {
-    onEachFeature: function(feature, layer) {
+    style: function ( geojsonFeature) {
+        return {
+            weight: 8,
+            color: "darkblue"
+        }
+
+    },
+    onEachFeature: function(feature,layer) {
         //console.log("tourenFeature", feature);
         //console.log("tourenLayer", layer);
-        layer.bindPopup(`<h4> Fluss: ${feature.properties.name}</h4>
-        <h4>Tour: City Tour Innsbruck</h4>`);
+        layer.bindPopup(`<h4> Tour: ${feature.properties.fclass}</h4>
+        <h4>Fluss: ${feature.properties.name}</h4>`);
         return layer
     }
 }).addTo(map);
+
 L.geoJSON(BASE_EIN_AUSSTIEG).addTo(map);
 
 
