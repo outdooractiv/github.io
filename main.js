@@ -36,6 +36,12 @@ L.geoJSON(TOUREN, {
         //console.log("tourenLayer", layer);
         layer.bindPopup(`<h4> Tour: ${feature.properties.fclass}</h4>
         <h4>Fluss: ${feature.properties.name}</h4>`);
+        layer.on('mouseover', function (e) {
+            layer.openPopup();
+        });
+        layer.on('mouseout', function (e) {
+            layer.closePopup();
+        });
         return layer
     }
 }).addTo(map);
