@@ -8,10 +8,16 @@ let map = L.map("map", {
     ]
 });
 
+let poi = {
+    drinkingWater: L.featureGroup()
+};
+
 L.control.layers({
     "TopoMap": L.tileLayer.provider("OpenTopoMap"),
     "OpenStreetMap": L.tileLayer.provider("OpenStreetMap.Mapnik"),
     "Satellit": L.tileLayer.provider("Esri.WorldImagery")
+}, {
+    "Trinkwasser": poi.drinkingWater
 }).addTo(map);
 
 
@@ -27,8 +33,20 @@ for (let i = 0; i < geojsonFeature.features.length; i++) {
     const element = geojsonFeature.features[i];
     const fclass = element.properties.fclass;
     const name = element.properties.name;
+    const popUP = [fclass, "name"]
     
     if (element.properties.fclass === "drinking_water") {
-        L.geoJSON(element).bindPopup(fclass, name).addTo(map);
-    }
+        L.geoJSON(element, {
+            pointToLayer: function(point, latlng) {
+                console.log("Point", point.properties.fclass);
+                console.log("latlng", latlng);
+                let myIcon = L.icon({iconUrl: 'icon/drinkingfountain.png'});
+                let marker = L.marker(latlng, {
+                    icon: myIcon
+                });
+                marker.bindPopup(`<h3>${point.properties.fclass}</h3>`);
+                return marker
+            }
+        }).addTo(poi.drinkingWater);
+    };
 };
