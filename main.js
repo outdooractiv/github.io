@@ -23,7 +23,16 @@ L.control.layers({
 
 
 
-L.geoJSON(TOUREN).addTo(map);
+L.geoJSON(TOUREN, {
+    onEachFeature: function(feature, layer) {
+        //console.log("tourenFeature", feature);
+        //console.log("tourenLayer", layer);
+        layer.bindPopup(`<h4> Fluss: ${feature.properties.name}</h4>
+        <h4>Tour: City Tour Innsbruck</h4>`);
+        return layer
+    }
+}).addTo(map);
+L.geoJSON(BASE_EIN_AUSSTIEG).addTo(map);
 
 
 console.log(geojsonFeature.features[3].properties);
@@ -35,8 +44,8 @@ for (let i = 0; i < geojsonFeature.features.length; i++) {
     if (element.properties.fclass === "drinking_water") {
         L.geoJSON(element, {
             pointToLayer: function(point, latlng) {
-                console.log("Point", point.properties.fclass);
-                console.log("latlng", latlng);
+                //console.log("Point", point.properties.fclass);
+                //console.log("latlng", latlng);
                 let myIcon = L.icon({iconUrl: 'icon/drinkingfountain.png'});
                 let marker = L.marker(latlng, {
                     icon: myIcon
