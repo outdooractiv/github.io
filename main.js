@@ -109,7 +109,7 @@ L.geoJSON(BASE_EIN_AUSSTIEG, {
 
 console.log(geojsonFeature.features[3].properties);
 console.log(geojsonFeature.features.length);
-
+function displayPoi()
 for (let i = 0; i < geojsonFeature.features.length; i++) {
     const element = geojsonFeature.features[i];
     
