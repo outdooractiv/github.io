@@ -52,7 +52,23 @@ L.geoJSON(BASE_EIN_AUSSTIEG, {
             });
             marker.bindPopup("hallo")
             return marker
+        } else if (point.properties.type === "ausstieg") {
+            console.log("ziel");
+            let marker = L.marker(latlng, {
+                icon: finishIcon
+            });
+            marker.bindPopup("hallo")
+            return marker
+        } else {
+            console.log("home");
+            let marker = L.marker(latlng, {
+                icon: homeIcon
+            });
+            marker.bindPopup("hallo")
+            return marker
         }
+        marker.bindPopup("hallo")
+        return marker
     }
 }).addTo(map);
 
