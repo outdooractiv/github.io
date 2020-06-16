@@ -1,7 +1,7 @@
 let startlayer = L.tileLayer.provider("OpenStreetMap.Mapnik");
 
 let map = L.map("map", {
-    center: [47.23, 10.73],
+    center: [47.181075, 11.377461],
     zoom: 12,
     layers: [
         startlayer
@@ -23,7 +23,7 @@ L.control.layers({
 
 
 
-//L.geoJSON(geojsonFeature).addTo(map);
+L.geoJSON(TOUREN).addTo(map);
 
 
 console.log(geojsonFeature.features[3].properties);
