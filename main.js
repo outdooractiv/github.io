@@ -123,11 +123,21 @@ function displayPoi(data, icon1, icon2, poi, fclass1, fclass2) {
                 pointToLayer: function(point, latlng) {
                     //console.log("Point", point.properties.fclass);
                     //console.log("latlng", latlng);
-                    let myIcon = L.icon({iconUrl: `icon/${icon1}.png`});
+                    let myIcon = L.icon({
+                        iconUrl: `icon/${icon1}.png`,
+                        iconAnchor: [16, 37],
+                        popupAnchor: [0, -37]
+                    });
                     let marker = L.marker(latlng, {
                         icon: myIcon
                     });
-                    marker.bindPopup(`<h3>${point.properties.name}</h3>`);
+                    marker.bindPopup(`<h3>${point.properties.name} (${point.properties.fclass})</h3>`);
+                    marker.on('mouseover', function (e) {
+                        marker.openPopup();
+                    });
+                    marker.on('mouseout', function (e) {
+                        marker.closePopup();
+                    });
                     return marker
                 }
             }).addTo(poi);
@@ -136,11 +146,21 @@ function displayPoi(data, icon1, icon2, poi, fclass1, fclass2) {
                 pointToLayer: function(point, latlng) {
                     //console.log("Point", point.properties.fclass);
                     //console.log("latlng", latlng);
-                    let myIcon = L.icon({iconUrl: `icon/${icon2}.png`});
+                    let myIcon = L.icon({
+                        iconUrl: `icon/${icon2}.png`,
+                        iconAnchor: [16, 37],
+                        popupAnchor: [0, -37]
+                    });
                     let marker = L.marker(latlng, {
                         icon: myIcon
                     });
-                    marker.bindPopup(`<h3>${point.properties.name}</h3>`);
+                    marker.bindPopup(`<h3>${point.properties.name} (${point.properties.fclass})</h3>`);
+                    marker.on('mouseover', function (e) {
+                        marker.openPopup();
+                    });
+                    marker.on('mouseout', function (e) {
+                        marker.closePopup();
+                    });
                     return marker
                 }
             }).addTo(poi);
@@ -169,3 +189,16 @@ displayPoi(data = NIGHT, icon1 = "bar", icon2 = "dancinghall", poi = poi.party, 
 //         }).addTo(poi.drinkingWater);
 //     };
 // };    
+
+// let legend = L.control({position: 'bottomright'});
+
+// legend.onAdd = function (map) {
+
+//     var div = L.DomUtil.create('div', 'info legend'),
+//         grades = ["test", "test2"],
+//         labels = ['icon/bar.png', "icon/dancinghall.png"];
+
+//     return div;
+// };
+
+// legend.addTo(map);
