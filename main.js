@@ -14,6 +14,21 @@ L.control.layers({
     "Satellit": L.tileLayer.provider("Esri.WorldImagery")
 }).addTo(map);
 
-let geojsonFeature = "austria_gis_osm_pois_free_1.geojson"
 
-L.geoJSON(geojsonFeature).addTo(map);
+
+
+//L.geoJSON(geojsonFeature).addTo(map);
+
+
+console.log(geojsonFeature.features[3].properties);
+console.log(geojsonFeature.features.length);
+
+for (let i = 0; i < geojsonFeature.features.length; i++) {
+    const element = geojsonFeature.features[i];
+    const fclass = element.properties.fclass;
+    const name = element.properties.name;
+    
+    if (element.properties.fclass === "drinking_water") {
+        L.geoJSON(element).bindPopup(fclass, name).addTo(map);
+    }
+};
