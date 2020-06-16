@@ -9,7 +9,8 @@ let map = L.map("map", {
 });
 
 let poi = {
-    drinkingWater: L.featureGroup()
+    drinkingWater: L.featureGroup(),
+    party: L.featureGroup()
 };
 
 L.control.layers({
@@ -17,7 +18,8 @@ L.control.layers({
     "OpenStreetMap": L.tileLayer.provider("OpenStreetMap.Mapnik"),
     "Satellit": L.tileLayer.provider("Esri.WorldImagery")
 }, {
-    "Trinkwasser": poi.drinkingWater
+    "Trinkwasser": poi.drinkingWater,
+    "Party": poi.party
 }).addTo(map);
 
 
@@ -109,7 +111,30 @@ L.geoJSON(BASE_EIN_AUSSTIEG, {
 
 console.log(geojsonFeature.features[3].properties);
 console.log(geojsonFeature.features.length);
-function displayPoi()
+
+function displayPoi(data, fclass, icon, poi) {
+    for (let i = 0; i < data.features.length; i++) {
+        const element = data.features[i];
+        
+        if (element.properties.fclass === fclass) {
+            L.geoJSON(element, {
+                pointToLayer: function(point, latlng) {
+                    //console.log("Point", point.properties.fclass);
+                    //console.log("latlng", latlng);
+                    let myIcon = L.icon({iconUrl: `icon/${icon}.png`});
+                    let marker = L.marker(latlng, {
+                        icon: myIcon
+                    });
+                    marker.bindPopup(`<h3>${point.properties.fclass}</h3>`);
+                    return marker
+                }
+            }).addTo(poi);
+        };
+    };    
+}
+
+displayPoi(NIGHT, "pub", "start", poi.party)
+
 for (let i = 0; i < geojsonFeature.features.length; i++) {
     const element = geojsonFeature.features[i];
     
@@ -127,4 +152,4 @@ for (let i = 0; i < geojsonFeature.features.length; i++) {
             }
         }).addTo(poi.drinkingWater);
     };
-};
+};    
