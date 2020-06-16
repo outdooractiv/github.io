@@ -61,23 +61,41 @@ L.geoJSON(BASE_EIN_AUSSTIEG, {
         if (point.properties.type === "base") {
             //console.log("start");
             let marker = L.marker(latlng, {
+                riseOnHover: true,
                 icon: homeIcon
             });
-            marker.bindPopup(`<h3>${point.properties.name}</h3>`)
+            marker.bindPopup(`<h3>${point.properties.name}</h3>`);
+            marker.on('mouseover', function (e) {
+                marker.openPopup();
+            });
+            marker.on('mouseout', function (e) {
+                marker.closePopup();
+            });
             return marker
         } else if (point.properties.type === "ausstieg") {
             //console.log("ziel");
             let marker = L.marker(latlng, {
                 icon: finishIcon
             });
-            marker.bindPopup(`<h3>${point.properties.fclass}</h3>`)
+            marker.bindPopup(`<h3>${point.properties.fclass}</h3>`);
+            marker.on('mouseover', function (e) {
+                marker.openPopup();
+            });
+            marker.on('mouseout', function (e) {
+                marker.closePopup();
+            });
             return marker
         } else {
-            //console.log("home");
             let marker = L.marker(latlng, {
                 icon: startIcon
             });
-            marker.bindPopup(`<h3>${point.properties.fclass}</h3>`)
+            marker.bindPopup(`<h3>${point.properties.fclass}</h3>`);
+            marker.on('mouseover', function (e) {
+                marker.openPopup();
+            });
+            marker.on('mouseout', function (e) {
+                marker.closePopup();
+            });
             return marker
         }
     }
