@@ -20,8 +20,10 @@ L.control.layers({
     "OpenStreetMap": L.tileLayer.provider("OpenStreetMap.Mapnik"),
     "Satellit": L.tileLayer.provider("Esri.WorldImagery")
 }, {
-    "Trinkwasser": poi.drinkingWater,
-    "Party": poi.party
+    //"Schlafen": poi.sleep,
+    "Essen": poi.eat,
+    "Party": poi.party,
+    //"Trinkwasser": poi.drinkingWater
 }).addTo(map);
 
 
@@ -169,6 +171,12 @@ function displayPoi(data, icon1, icon2, poi, fclass1, fclass2) {
 };
 
 displayPoi(data = NIGHT, icon1 = "bar", icon2 = "dancinghall", poi = poi.party, fclass1 = "pub", fclass2 = "nightclub");
+
+displayPoi(data = VIEWPOINT_ATTRACTION, icon1 = "start", icon2 = "finish", poi = poi.eat, fclass1 = "viewpoint", fclass2 = "attraction");
+
+//displayPoi(data = SLEEP_EAT, icon1 = "bar", icon2 = "dancinghall", poi = poi.//sleep, fclass1 = "hotel", fclass2 = "bed_and_breakfast");
+
+// displayPoi(data = SLEEP_EAT, icon1 = "bar", icon2 = "dancinghall", poi = poi.eat, fclass1 = "restaurant", fclass2 = "fast_food");
 
 
 // for (let i = 0; i < geojsonFeature.features.length; i++) {

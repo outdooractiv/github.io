@@ -1,4 +1,4 @@
-const water_picnic = {
+const WATER_PICNIC = {
 "type": "FeatureCollection",
 "name": "water_picnic",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
