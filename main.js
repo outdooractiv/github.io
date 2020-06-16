@@ -9,6 +9,8 @@ let map = L.map("map", {
 });
 
 let poi = {
+    sleep: L.featureGroup(),
+    eat: L.featureGroup(),
     drinkingWater: L.featureGroup(),
     party: L.featureGroup()
 };
@@ -112,44 +114,58 @@ L.geoJSON(BASE_EIN_AUSSTIEG, {
 console.log(geojsonFeature.features[3].properties);
 console.log(geojsonFeature.features.length);
 
-function displayPoi(data, fclass, icon, poi) {
+function displayPoi(data, icon1, icon2, poi, fclass1, fclass2) {
     for (let i = 0; i < data.features.length; i++) {
         const element = data.features[i];
         
-        if (element.properties.fclass === fclass) {
+        if (element.properties.fclass === fclass1) {
             L.geoJSON(element, {
                 pointToLayer: function(point, latlng) {
                     //console.log("Point", point.properties.fclass);
                     //console.log("latlng", latlng);
-                    let myIcon = L.icon({iconUrl: `icon/${icon}.png`});
+                    let myIcon = L.icon({iconUrl: `icon/${icon1}.png`});
                     let marker = L.marker(latlng, {
                         icon: myIcon
                     });
-                    marker.bindPopup(`<h3>${point.properties.fclass}</h3>`);
+                    marker.bindPopup(`<h3>${point.properties.name}</h3>`);
                     return marker
                 }
             }).addTo(poi);
-        };
+        } else if (element.properties.fclass === fclass2) {
+            L.geoJSON(element, {
+                pointToLayer: function(point, latlng) {
+                    //console.log("Point", point.properties.fclass);
+                    //console.log("latlng", latlng);
+                    let myIcon = L.icon({iconUrl: `icon/${icon2}.png`});
+                    let marker = L.marker(latlng, {
+                        icon: myIcon
+                    });
+                    marker.bindPopup(`<h3>${point.properties.name}</h3>`);
+                    return marker
+                }
+            }).addTo(poi);
     };    
-}
+};
+};
 
-displayPoi(NIGHT, "pub", "start", poi.party)
+displayPoi(data = NIGHT, icon1 = "bar", icon2 = "dancinghall", poi = poi.party, fclass1 = "pub", fclass2 = "nightclub");
 
-for (let i = 0; i < geojsonFeature.features.length; i++) {
-    const element = geojsonFeature.features[i];
+
+// for (let i = 0; i < geojsonFeature.features.length; i++) {
+//     const element = geojsonFeature.features[i];
     
-    if (element.properties.fclass === "drinking_water") {
-        L.geoJSON(element, {
-            pointToLayer: function(point, latlng) {
-                //console.log("Point", point.properties.fclass);
-                //console.log("latlng", latlng);
-                let myIcon = L.icon({iconUrl: 'icon/drinkingfountain.png'});
-                let marker = L.marker(latlng, {
-                    icon: myIcon
-                });
-                marker.bindPopup(`<h3>${point.properties.fclass}</h3>`);
-                return marker
-            }
-        }).addTo(poi.drinkingWater);
-    };
-};    
+//     if (element.properties.fclass === "drinking_water") {
+//         L.geoJSON(element, {
+//             pointToLayer: function(point, latlng) {
+//                 //console.log("Point", point.properties.fclass);
+//                 //console.log("latlng", latlng);
+//                 let myIcon = L.icon({iconUrl: 'icon/drinkingfountain.png'});
+//                 let marker = L.marker(latlng, {
+//                     icon: myIcon
+//                 });
+//                 marker.bindPopup(`<h3>${point.properties.fclass}</h3>`);
+//                 return marker
+//             }
+//         }).addTo(poi.drinkingWater);
+//     };
+// };    
