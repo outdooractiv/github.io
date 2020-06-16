@@ -40,8 +40,48 @@ L.geoJSON(TOUREN, {
     }
 }).addTo(map);
 
-L.geoJSON(BASE_EIN_AUSSTIEG).addTo(map);
+L.geoJSON(BASE_EIN_AUSSTIEG, {
+    pointToLayer: function(point, latlng) {
+        let startIcon = L.icon({iconUrl: 'icon/start.png'});
+        let finishIcon = L.icon({iconUrl: 'icon/finish.png'});
+        let homeIcon = L.icon({iconUrl: 'icon/home.png'});
+        if (point.properties.type === "einstieg") {
+            console.log("start");
+            let marker = L.marker(latlng, {
+                icon: startIcon
+            });
+            marker.bindPopup("hallo")
+            return marker
+        }
+    }
+}).addTo(map);
 
+// function drawBase(type) {
+//     if (point)
+//     L.geoJSON(BASE_EIN_AUSSTIEG, {
+//         pointToLayer: function(point, latlng) {
+//             let myIcon = L.icon({iconUrl: `icon/${type}.png`});
+//             if (point.properties.type === "einstieg") {
+//                 console.log("start");
+//                 let marker = L.marker(latlng, {
+//                     icon: startIcon
+//                 });
+//             } else if (point.properties.type === "ausstieg") {
+//                 console.log("ziel");
+//                 let marker = L.marker(latlng, {
+//                     icon: finishIcon
+//                 });
+//             } else {
+//                 console.log("home");
+//                 let marker = L.marker(latlng, {
+//                     icon: homeIcon
+//                 });
+//             }
+//             marker.bindPopup("hallo")
+//             return marker
+//         }
+//     }).addTo(map);
+// }
 
 console.log(geojsonFeature.features[3].properties);
 console.log(geojsonFeature.features.length);
