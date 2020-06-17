@@ -237,6 +237,3 @@ L.geoJSON(RADROUTEN, {
     }
 }).addTo(overlay.bicycleTour);
 
-
-
-console.log(map.getBounds());
