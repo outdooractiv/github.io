@@ -18,6 +18,7 @@ let overlay = {
     party: L.featureGroup(),
     alpinehut: L.featureGroup(),
     drinkingWater: L.featureGroup(),
+    bicycleshop: L.featureGroup(),
     bicycleTour: L.featureGroup()
 };
 
@@ -33,6 +34,7 @@ L.control.layers({
     "Party": overlay.party,
     "Almhütte": overlay.alpinehut,
     "Trinkwasser/ Picknick": overlay.drinkingWater,
+    "Fahrradverleih/ -shop": overlay.bicycleshop,
     "<strong>Radrouten/ Trails</strong>": overlay.bicycleTour
 }).addTo(map);
 
@@ -195,6 +197,7 @@ displayPoi(data = SLEEP_EAT, icon1 = "bar", icon2 = "coffee", poi = overlay.drin
 displayPoi(data = SLEEP_EAT, icon1 = "hotel", icon2 = "bed_breakfast", poi = overlay.sleep, fclass1 = "hotel", fclass2 = "bed_and_breakfast");
 displayPoi(data = SLEEP_EAT, icon1 = "hut", icon2, poi = overlay.alpinehut, fclass1 = "alpine_hut", fclass2);
 displayPoi(data = WATER_PICNIC, icon1 = "drinkingfountain", icon2 = "picnic", poi = overlay.drinkingWater, fclass1 = "drinking_water", fclass2 = "picnic_site");
+displayPoi(data = SHOPING, icon1 = "bicycle_rental", icon2 = "bicycle_shop", poi = overlay.bicycleshop, fclass1 = "bicycle_rental", fclass2 = "bicycle_shop");
 
 
 // for (let i = 0; i < WATER_PICNIC.features.length; i++) {
@@ -219,7 +222,7 @@ displayPoi(data = WATER_PICNIC, icon1 = "drinkingfountain", icon2 = "picnic", po
 // radrouten und trails
 L.geoJSON(RADROUTEN, {
     style: function (geojsonFeature) {
-        console.log(geojsonFeature.properties)
+        //console.log(geojsonFeature.properties)
         if (geojsonFeature.properties.SCHWIERIGK === "leicht") {
             return {
                 weight: 3,
