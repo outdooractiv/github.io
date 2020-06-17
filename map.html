@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Outdoor map</title>
 
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
@@ -27,8 +32,76 @@
     <script defer src="main.js"></script>
 
 </head>
+
 <body>
-    <header>vielleicht Bild</header>
+
+    <!-- navigationsleiste -->
+
+    <div class="Navigationsleiste">
+        <ul>
+            <li style="font-weight: bold;"><a href="index.html">Rafting Tirol</a></li>
+            <li><a href="map.html"> Unsere Touren</a></li>
+            <li style="float:right"><a class="active" href="kontakt.html">Kontakt</a></li>
+        </ul>
+    </div>
+
+    <!-- Titelbild -->
+
+
+    <div style="text-align: right;">
+        <img src="images/mapimage.jpg" style="width:100%;height: 100%; position: static;">
+        <div id="quelle">Quelle Bild: <a
+                href="https://pixabay.com/de/photos/rafting-fluss-wasser-sport-1377057/">Pixabay</a> </div>
+    </div>
+
+
+    <!-- Text -->
+
+    <h3> Übersichtskarte Touren Tirol</h3>
+
+
+    <!-- Karte -->
+
     <div id="map"></div>
+
+
+
+    <!-- Footer -->
+
+    <div class="footer">
+
+        <p>
+
+            <a href="twitter.com/RaftingTirol" class="fa fa-twitter"></a>
+
+            &nbsp;
+
+            <a href="https://facebook.com/RaftingTirol" class="fa fa-facebook"></a>
+
+            &nbsp;
+
+            <a href="https://instagram.com/RaftingTirol" class="fa fa-instagram"></a>
+
+            &nbsp;
+
+            <a href="https://google.com/RaftingTirol" class="fa fa-google"></a>
+
+            &nbsp;
+
+            <a href="https://youtube.com/RaftingTirol" class="fa fa-youtube"></a>
+
+
+
+
+
+
+        </p>
+
+
+
+    </div>
+
+
 </body>
+
 </html>

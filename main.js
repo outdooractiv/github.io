@@ -89,7 +89,7 @@ L.geoJSON(BASE_EIN_AUSSTIEG, {
                 riseOnHover: true,
                 icon: homeIcon
             });
-            marker.bindPopup(`<h3>${point.properties.name}</h3>`);
+            marker.bindPopup(`<h4>${point.properties.name}</h4>`);
             marker.on('mouseover', function (e) {
                 marker.openPopup();
             });
@@ -102,7 +102,7 @@ L.geoJSON(BASE_EIN_AUSSTIEG, {
             let marker = L.marker(latlng, {
                 icon: finishIcon
             });
-            marker.bindPopup(`<h3>${point.properties.fclass}</h3>`);
+            marker.bindPopup(`<h4>${point.properties.fclass}</h4>`);
             marker.on('mouseover', function (e) {
                 marker.openPopup();
             });
@@ -114,7 +114,7 @@ L.geoJSON(BASE_EIN_AUSSTIEG, {
             let marker = L.marker(latlng, {
                 icon: startIcon
             });
-            marker.bindPopup(`<h3>${point.properties.fclass}</h3>`);
+            marker.bindPopup(`<h4>${point.properties.fclass}</h4>`);
             marker.on('mouseover', function (e) {
                 marker.openPopup();
             });
@@ -146,9 +146,9 @@ function displayPoi(data, icon1, icon2, poi, fclass1, fclass2) {
                     });
                     //console.log(point.properties.name === null)
                     if (point.properties.name !== null) {
-                        marker.bindPopup(`<h3>${point.properties.name} (${point.properties.fclass})</h3>`);
+                        marker.bindPopup(`<h4>${point.properties.name} (${point.properties.fclass})</h4>`);
                     } else {
-                        marker.bindPopup(`<h3>${point.properties.fclass}</h3>`);
+                        marker.bindPopup(`<h4>${point.properties.fclass}</h4>`);
                     }
                     marker.on('mouseover', function (e) {
                         marker.openPopup();
@@ -173,9 +173,9 @@ function displayPoi(data, icon1, icon2, poi, fclass1, fclass2) {
                         icon: myIcon
                     });
                     if (point.properties.name !== null) {
-                        marker.bindPopup(`<h3>${point.properties.name} (${point.properties.fclass})</h3>`);
+                        marker.bindPopup(`<h4>${point.properties.name} (${point.properties.fclass})</h4>`);
                     } else {
-                        marker.bindPopup(`<h3>${point.properties.fclass}</h3>`);
+                        marker.bindPopup(`<h4>${point.properties.fclass}</h4>`);
                     }
                     marker.on('mouseover', function (e) {
                         marker.openPopup();
@@ -219,8 +219,14 @@ L.geoJSON(RADROUTEN, {
     onEachFeature: function (feature, layer) {
         //console.log("tourenFeature", feature);
         //console.log("tourenLayer", layer);
-        layer.bindPopup(`<h3> Routenname: ${feature.properties.ROUTENNAME}</h3><h4> Routentyp: ${feature.properties.ROUTEN_TYP}</h4>
+        if (feature.properties.ROUTENBESC !== null) {
+            layer.bindPopup(`<h4> Routenname: ${feature.properties.ROUTENNAME}</h4><h5> Routentyp: ${feature.properties.ROUTEN_TYP}</h5>
         <strong>Fahrzeit: ${feature.properties.FAHRZEIT}</strong><p>Routenbeschreibung: ${feature.properties.ROUTENBESC}</p>`);
+        } else {
+            layer.bindPopup(`<h4> Routenname: ${feature.properties.ROUTENNAME}</h4><h5> Routentyp: ${feature.properties.ROUTEN_TYP}</h5>
+        <strong>Fahrzeit: ${feature.properties.FAHRZEIT}</strong>`);
+        }
+
         layer.on('mouseover', function (e) {
             layer.openPopup();
         });

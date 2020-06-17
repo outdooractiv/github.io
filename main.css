@@ -1,17 +1,371 @@
+/* Generell*/
+
+body {
+    max-width: auto;
+    margin: 0;
+    font-family: "Karma";
+    font-size: 18px;
+    text-align: center;
+
+}
+
+header {
+
+    text-align: center;
+}
+
+
+
+h2 {
+
+    text-align: center;
+    font-size: 35px;
+    font-style: bold;
+    font-family: 'Merriweather', serif;
+    position: center;
+}
+
+h3 {
+
+    text-align: center;
+    font-size: 35px;
+    font-style: bold;
+    font-family: 'Merriweather', serif;
+}
+
+
+/* Fonts-Startseite*/
+
+.kursivp p {
+
+    font-style: italic;
+    text-align: justify;
+    margin: 1cm;
+}
+
+.normalp p {
+
+    font-style: normal;
+    text-align: justify;
+    margin: 1cm;
+
+}
+
+
+
+
+
+
+
+
+/* Fonts-Startseite Bilder Galerie */
+
+.Familien p {
+    text-align: center;
+}
+
+.RaftingInnsbruck p {
+    text-align: center;
+}
+
+.Stubaital p {
+    text-align: center;
+}
+
+
+
+/* Navigationsleiste */
+
+.Navigationsleiste ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: center;
+    top: 0;
+    width: 100%;
+}
+
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+
+
+/* Video */
+
+.video {
+    margin: auto;
+    padding: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+/* Gallerie */
+
+div.gallery {
+    border: 1px solid #ccc;
+}
+
+div.gallery:hover {
+    border: 1px solid #777;
+}
+
+div.gallery img {
+    width: 100%;
+    height: auto;
+}
+
+/* div.desc {
+    padding: 15px;
+    text-align: center;
+  }
+  */
+
+* {
+    box-sizing: border-box;
+}
+
+.responsive {
+    padding: 0 6px;
+    float: left;
+    width: 24.99999%;
+}
+
+@media only screen and (max-width: 700px) {
+    .responsive {
+        width: 49.99999%;
+        margin: 6px 0;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .responsive {
+        width: 100%;
+    }
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+/* Bild Text */
+
+.container {
+    position: relative;
+    width: 100%;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #008CBA;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+}
+
+.container:hover .overlay {
+    height: 100%;
+}
+
+.text {
+    white-space: nowrap;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+
+
+/* Newsletter */
+
+form {
+    border: 3px solid #f1f1f1;
+}
+
+.container {
+    padding: 20px;
+    background-color: #f1f1f1;
+}
+
+input[type=text],
+input[type=submit] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+input[type=checkbox] {
+    margin-top: 16px;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+input[type=submit]:hover {
+    opacity: 0.8;
+}
+
+h3 {
+    text-align: center;
+}
+
+
+
+/* Newsletter Text */
+
+.newsletter {
+    font-style: italic;
+}
+
+.imagenews {
+    float: left;
+    text-align: right;
+
+}
+
+
+
+/* Anschrift */
+
+.anschrift {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #ccc;
+    position: sticky;
+    display: inline-block;
+    top: 0;
+    width: 100%;
+}
+
+.footer {
+    position: center;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+    padding: 3px;
+    margin: 5px;
+}
+
+/* Social Media Buttons */
+
+
+.fa {
+    padding: 15px;
+    font-size: 20px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+
+.fa-instagram {
+    background: #125688;
+    color: white;
+}
+
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+.fa-youtube {
+    background: #bb0000;
+    color: white;
+}
+
+.fa-google {
+    background: #dd4b39;
+    color: white;
+}
+
+.fa-android {
+    background: #a4c639;
+    color: white;
+}
+
+
+/* Quellen */
+
+
+#quelle {
+    margin-top: -30px;
+    margin-left: 85px;
+    font-weight: normal;
+    font-size: 10px;
+    color: #fff;
+}
+
+#flipquelle {
+    margin-top: 0px;
+    margin-left: 85px;
+    font-weight: normal;
+    font-size: 10px;
+    color: #fff;
+    text-align: end;
+}
+
 #map {
     width: 100%;
     height: 900px;
     border: 1px solid gray;
-}
-
-.legend {
-    line-height: 18px;
-    color: #555;
-}
-.legend i {
-    width: 18px;
-    height: 18px;
-    float: left;
-    margin-right: 8px;
-    opacity: 0.7;
 }
