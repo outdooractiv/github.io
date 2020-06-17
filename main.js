@@ -1,5 +1,7 @@
+// starlayer
 let startlayer = L.tileLayer.provider("OpenStreetMap.Mapnik");
 
+// map
 let map = L.map("map", {
     center: [47.181075, 11.377461],
     zoom: 12,
@@ -8,15 +10,18 @@ let map = L.map("map", {
     ]
 });
 
+// featureGroups
 let overlay = {
     sleep: L.featureGroup(),
     eat: L.featureGroup(),
     drink: L.featureGroup(),
     party: L.featureGroup(),
     alpinehut: L.featureGroup(),
-    drinkingWater: L.featureGroup()
+    drinkingWater: L.featureGroup(),
+    bicycleTour: L.featureGroup()
 };
 
+// control menue
 L.control.layers({
     "TopoMap": L.tileLayer.provider("OpenTopoMap"),
     "OpenStreetMap": L.tileLayer.provider("OpenStreetMap.Mapnik"),
@@ -27,12 +32,13 @@ L.control.layers({
     "Trinken": overlay.drink,
     "Party": overlay.party,
     "Almhütte": overlay.alpinehut,
-    "Trinkwasser/ Picknick": overlay.drinkingWater
+    "Trinkwasser/ Picknick": overlay.drinkingWater,
+    "Radrouten/ Trails": overlay.bicycleTour
 }).addTo(map);
 
 
 
-
+// raftingtouren layer
 L.geoJSON(TOUREN, {
     style: function (geojsonFeature) {
         return {
@@ -56,6 +62,7 @@ L.geoJSON(TOUREN, {
     }
 }).addTo(map);
 
+// einstieg ausstieg layer
 L.geoJSON(BASE_EIN_AUSSTIEG, {
     pointToLayer: function (point, latlng) {
         let startIcon = L.icon({
@@ -117,7 +124,7 @@ L.geoJSON(BASE_EIN_AUSSTIEG, {
     }
 }).addTo(map);
 
-
+// function display poi
 function displayPoi(data, icon1, icon2, poi, fclass1, fclass2) {
     for (let i = 0; i < data.features.length; i++) {
         const element = data.features[i];
@@ -172,59 +179,7 @@ function displayPoi(data, icon1, icon2, poi, fclass1, fclass2) {
     };
 };
 
-
-// for (let i = 0; i < data.features.length; i++) {
-//     const element = data.features[i];
-
-//     if (element.properties.fclass === fclass1) {
-//         L.geoJSON(element, {
-//             pointToLayer: function (point, latlng) {
-//                 //console.log("Point", point.properties.fclass);
-//                 //console.log("latlng", latlng);
-//                 let myIcon = L.icon({
-//                     iconUrl: `icon/${icon1}.png`,
-//                     iconAnchor: [16, 37],
-//                     popupAnchor: [0, -37]
-//                 });
-//                 let marker = L.marker(latlng, {
-//                     icon: myIcon
-//                 });
-//                 marker.bindPopup(`<h3>${point.properties.name} (${point.properties.fclass})</h3>`);
-//                 marker.on('mouseover', function (e) {
-//                     marker.openPopup();
-//                 });
-//                 marker.on('mouseout', function (e) {
-//                     marker.closePopup();
-//                 });
-//                 return marker
-//             }
-//         }).addTo(poi);
-//     } else if (element.properties.fclass === fclass2) {
-//         L.geoJSON(element, {
-//             pointToLayer: function (point, latlng) {
-//                 //console.log("Point", point.properties.fclass);
-//                 //console.log("latlng", latlng);
-//                 let myIcon = L.icon({
-//                     iconUrl: `icon/${icon2}.png`,
-//                     iconAnchor: [16, 37],
-//                     popupAnchor: [0, -37]
-//                 });
-//                 let marker = L.marker(latlng, {
-//                     icon: myIcon
-//                 });
-//                 marker.bindPopup(`<h3>${point.properties.name} (${point.properties.fclass})</h3>`);
-//                 marker.on('mouseover', function (e) {
-//                     marker.openPopup();
-//                 });
-//                 marker.on('mouseout', function (e) {
-//                     marker.closePopup();
-//                 });
-//                 return marker
-//             }
-//         }).addTo(poi);
-//     };
-// };
-
+// use function draw pois
 displayPoi(data = NIGHT, icon1 = "bar_coktail", icon2 = "dancinghall", poi = overlay.party, fclass1 = "pub", fclass2 = "nightclub");
 displayPoi(data = SLEEP_EAT, icon1 = "restaurant", icon2 = "fastfood", poi = overlay.eat, fclass1 = "restaurant", fclass2 = "fast_food");
 displayPoi(data = SLEEP_EAT, icon1 = "bar", icon2 = "coffee", poi = overlay.drink, fclass1 = "bar", fclass2 = "cafe");
@@ -250,4 +205,34 @@ displayPoi(data = WATER_PICNIC, icon1 = "drinkingfountain", icon2 = "picnic", po
 //             }
 //         }).addTo(overlay.drinkingWater);
 //     };
-// };   
+// };
+
+L.geoJSON(RADROUTEN, {
+    style: function (geojsonFeature) {
+        console.log(geojsonFeature.properties)
+        if (geojsonFeature.properties.SCHWIERIGK === "leicht") {
+            return {
+                weight: 3,
+                color: "green"
+            }
+        } else if (geojsonFeature.properties.SCHWIERIGK === "schwierig") {
+            return {
+                weight: 3,
+                color: "red"
+            }
+        }
+    },
+    onEachFeature: function (feature, layer) {
+        //console.log("tourenFeature", feature);
+        //console.log("tourenLayer", layer);
+        layer.bindPopup(`<h3> Routenname: ${feature.properties.ROUTENNAME}</h3><h4> Routentyp: ${feature.properties.ROUTEN_TYP}</h4>
+        <p>Fahrzeit: ${feature.properties.FAHRZEIT}</p>`);
+        layer.on('mouseover', function (e) {
+            layer.openPopup();
+        });
+        layer.on('mouseout', function (e) {
+            layer.closePopup();
+        });
+        return layer
+    }
+}).addTo(overlay.bicycleTour);
