@@ -33,7 +33,7 @@ L.control.layers({
     "Party": overlay.party,
     "Almhütte": overlay.alpinehut,
     "Trinkwasser/ Picknick": overlay.drinkingWater,
-    "Radrouten/ Trails": overlay.bicycleTour
+    "<strong>Radrouten/ Trails</strong>": overlay.bicycleTour
 }).addTo(map);
 
 
@@ -142,7 +142,12 @@ function displayPoi(data, icon1, icon2, poi, fclass1, fclass2) {
                     let marker = L.marker(latlng, {
                         icon: myIcon
                     });
-                    marker.bindPopup(`<h3>${point.properties.name} (${point.properties.fclass})</h3>`);
+                    //console.log(point.properties.name === null)
+                    if (point.properties.name !== null) {
+                        marker.bindPopup(`<h3>${point.properties.name} (${point.properties.fclass})</h3>`);
+                    } else {
+                        marker.bindPopup(`<h3>${point.properties.fclass}</h3>`);
+                    }
                     marker.on('mouseover', function (e) {
                         marker.openPopup();
                     });
@@ -165,7 +170,11 @@ function displayPoi(data, icon1, icon2, poi, fclass1, fclass2) {
                     let marker = L.marker(latlng, {
                         icon: myIcon
                     });
-                    marker.bindPopup(`<h3>${point.properties.name} (${point.properties.fclass})</h3>`);
+                    if (point.properties.name !== null) {
+                        marker.bindPopup(`<h3>${point.properties.name} (${point.properties.fclass})</h3>`);
+                    } else {
+                        marker.bindPopup(`<h3>${point.properties.fclass}</h3>`);
+                    }
                     marker.on('mouseover', function (e) {
                         marker.openPopup();
                     });
@@ -207,6 +216,7 @@ displayPoi(data = WATER_PICNIC, icon1 = "drinkingfountain", icon2 = "picnic", po
 //     };
 // };
 
+// radrouten und trails
 L.geoJSON(RADROUTEN, {
     style: function (geojsonFeature) {
         console.log(geojsonFeature.properties)
@@ -226,7 +236,7 @@ L.geoJSON(RADROUTEN, {
         //console.log("tourenFeature", feature);
         //console.log("tourenLayer", layer);
         layer.bindPopup(`<h3> Routenname: ${feature.properties.ROUTENNAME}</h3><h4> Routentyp: ${feature.properties.ROUTEN_TYP}</h4>
-        <p>Fahrzeit: ${feature.properties.FAHRZEIT}</p>`);
+        <strong>Fahrzeit: ${feature.properties.FAHRZEIT}</strong><p>Routenbeschreibung: ${feature.properties.ROUTENBESC}</p>`);
         layer.on('mouseover', function (e) {
             layer.openPopup();
         });
