@@ -10,6 +10,7 @@ let map = L.map("map", {
 
 let overlay = {
     eat: L.featureGroup(),
+    drink: L.featureGroup(),
     party: L.featureGroup(),
     drinkingWater: L.featureGroup()
 };
@@ -21,6 +22,7 @@ L.control.layers({
 }, {
     //"Schlafen": poi.sleep,
     "Essen": overlay.eat,
+    "Trinken": overlay.drink,
     "Party": overlay.party,
     "Trinkwasser": overlay.drinkingWater
 }).addTo(map);
@@ -222,9 +224,9 @@ function displayPoi(data, icon1, icon2, poi, fclass1, fclass2) {
 //     };
 // };
 
-displayPoi(data = NIGHT, icon1 = "bar", icon2 = "dancinghall", poi = overlay.party, fclass1 = "pub", fclass2 = "nightclub");
-displayPoi(data = VIEWPOINT_ATTRACTION, icon1 = "start", icon2 = "finish", poi = overlay.eat, fclass1 = "viewpoint", fclass2 = "attraction");
-
+displayPoi(data = NIGHT, icon1 = "bar_coktail", icon2 = "dancinghall", poi = overlay.party, fclass1 = "pub", fclass2 = "nightclub");
+displayPoi(data = SLEEP_EAT, icon1 = "restaurant", icon2 = "fastfood", poi = overlay.eat, fclass1 = "restaurant", fclass2 = "fastfood");
+displayPoi(data = SLEEP_EAT, icon1 = "bar", icon2 = "coffee", poi = overlay.drink, fclass1 = "bar", fclass2 = "cafe");
 
 //displayPoi(data = SLEEP_EAT, icon1 = "bar", icon2 = "dancinghall", poi = poi.//sleep, fclass1 = "hotel", fclass2 = "bed_and_breakfast");
 
