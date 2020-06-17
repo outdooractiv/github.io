@@ -200,25 +200,6 @@ displayPoi(data = WATER_PICNIC, icon1 = "drinkingfountain", icon2 = "picnic", po
 displayPoi(data = SHOPING, icon1 = "bicycle_rental", icon2 = "bicycle_shop", poi = overlay.bicycleshop, fclass1 = "bicycle_rental", fclass2 = "bicycle_shop");
 
 
-// for (let i = 0; i < WATER_PICNIC.features.length; i++) {
-//     const element = WATER_PICNIC.features[i];
-
-//     if (element.properties.fclass === "drinking_water") {
-//         L.geoJSON(element, {
-//             pointToLayer: function(point, latlng) {
-//                 //console.log("Point", point.properties.fclass);
-//                 //console.log("latlng", latlng);
-//                 let myIcon = L.icon({iconUrl: 'icon/drinkingfountain.png'});
-//                 let marker = L.marker(latlng, {
-//                     icon: myIcon
-//                 });
-//                 marker.bindPopup(`<h3>${point.properties.fclass}</h3>`);
-//                 return marker
-//             }
-//         }).addTo(overlay.drinkingWater);
-//     };
-// };
-
 // radrouten und trails
 L.geoJSON(RADROUTEN, {
     style: function (geojsonFeature) {
