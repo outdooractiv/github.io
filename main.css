@@ -87,6 +87,17 @@ h3 {
     width: 100%;
 }
 
+.NavigationsleisteK ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
 
 li {
     float: left;
@@ -226,7 +237,7 @@ form {
 }
 
 .container {
-    padding: 20px;
+    padding: 0px;
     background-color: #f1f1f1;
 }
 
