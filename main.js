@@ -4,7 +4,7 @@ let startlayer = L.tileLayer.provider("OpenStreetMap.Mapnik");
 // map
 let map = L.map("map", {
     center: [47.181075, 11.377461],
-    zoom: 12,
+    zoom: 11,
     layers: [
         startlayer
     ]
